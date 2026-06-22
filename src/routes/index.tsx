@@ -538,3 +538,438 @@ function Footer() {
     </footer>
   );
 }
+
+/* ------------------------------ Catalog ------------------------------ */
+
+const catalogGroups = [
+  {
+    icon: WashingMachine,
+    title: "Domestic Appliance Components",
+    items: [
+      "Rotary & reciprocating AC compressors",
+      "Digital & capillary thermostats",
+      "Washing machine motors & gearboxes",
+      "PCB control boards & inverter modules",
+      "Fan motors, blowers & evaporator coils",
+    ],
+    brands: ["Voltas", "LG", "Samsung", "Daikin", "Bosch", "Whirlpool", "IFB", "Hitachi"],
+  },
+  {
+    icon: Factory,
+    title: "Heavy Industrial Parts",
+    items: [
+      "Cooling tower fills, drift eliminators & nozzles",
+      "Industrial-grade run & start capacitors",
+      "Calibrated pressure & vacuum gauges",
+      "Heavy-duty ball, gate & butterfly valves",
+      "Commercial refrigerants — R-32, R-410A, R-134a, R-407C",
+    ],
+    brands: ["Danfoss", "Emerson", "Carrier", "Honeywell", "Bitzer", "Copeland", "Schneider"],
+  },
+];
+
+const amcTiers = [
+  {
+    name: "Basic Home Care",
+    audience: "Apartments & residences",
+    price: "Starter",
+    icon: Snowflake,
+    points: [
+      "2 scheduled AC / appliance visits per year",
+      "Jet cleaning + gas pressure check",
+      "Priority booking on the Wagholi–Shirur route",
+      "10% off genuine spare parts",
+    ],
+  },
+  {
+    name: "Commercial Routine",
+    audience: "Shops, clinics, offices",
+    price: "Most chosen",
+    icon: ShieldCheck,
+    points: [
+      "Quarterly preventative servicing",
+      "Display chiller & deep-freezer temperature audit",
+      "Sub-24h response window",
+      "Logged diagnostics report after every visit",
+    ],
+    featured: true,
+  },
+  {
+    name: "Industrial Zero-Downtime",
+    audience: "MIDC plants & factories",
+    price: "Enterprise",
+    icon: Factory,
+    points: [
+      "Monthly on-site engineer rounds",
+      "Cooling tower, valve & gauge calibration",
+      "Emergency dispatch SLA — under 4 hours",
+      "Spare capacitors & refrigerant pre-staged on site",
+    ],
+  },
+];
+
+function Catalog() {
+  return (
+    <section id="catalog" className="py-24 border-t border-border">
+      <div className="mx-auto max-w-7xl px-6">
+        <SectionHeader
+          tag="Catalog & AMC Tiers"
+          title="Parts we stock. Brands we trust. Contracts we honour."
+          subtitle="A transparent view of the components our engineers carry and the maintenance plans built around them."
+        />
+
+        <div className="mt-12 grid lg:grid-cols-2 gap-6">
+          {catalogGroups.map((g) => (
+            <div key={g.title} className="surface-card rounded-2xl p-8">
+              <div className="flex items-center gap-3 mb-5">
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 border border-primary/20 text-primary">
+                  <g.icon className="h-5 w-5" />
+                </span>
+                <h3 className="font-display text-xl font-semibold">{g.title}</h3>
+              </div>
+              <ul className="space-y-2.5 text-sm text-muted-foreground">
+                {g.items.map((i) => (
+                  <li key={i} className="flex gap-2.5">
+                    <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+                    {i}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-6 pt-5 border-t border-border">
+                <div className="text-xs uppercase tracking-wider text-muted-foreground mb-3">
+                  Brands serviced
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {g.brands.map((b) => (
+                    <span
+                      key={b}
+                      className="rounded-md border border-border bg-background/40 px-2.5 py-1 text-xs"
+                    >
+                      {b}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-16">
+          <div className="flex items-end justify-between flex-wrap gap-4 mb-8">
+            <h3 className="font-display text-2xl md:text-3xl font-bold">
+              Annual Maintenance Contracts
+            </h3>
+            <p className="text-sm text-muted-foreground max-w-md">
+              Three tiers, engineered for the scale you operate at — from a single split AC to a full MIDC production line.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {amcTiers.map((t) => (
+              <div
+                key={t.name}
+                className={`surface-card rounded-2xl p-7 relative ${
+                  t.featured ? "border-primary/50 glow-ring" : ""
+                }`}
+              >
+                {t.featured && (
+                  <span className="absolute -top-3 left-7 inline-flex items-center rounded-full bg-primary text-primary-foreground text-[10px] font-bold uppercase tracking-wider px-2.5 py-1">
+                    {t.price}
+                  </span>
+                )}
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 border border-primary/20 text-primary">
+                    <t.icon className="h-5 w-5" />
+                  </span>
+                  <div>
+                    <div className="font-display font-semibold">{t.name}</div>
+                    <div className="text-xs text-muted-foreground">{t.audience}</div>
+                  </div>
+                </div>
+                <ul className="space-y-2.5 text-sm">
+                  {t.points.map((p) => (
+                    <li key={p} className="flex gap-2.5 text-muted-foreground">
+                      <ShieldCheck className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                      <span>{p}</span>
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href="#contact"
+                  className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-background/40 px-4 py-2.5 text-sm font-semibold hover:bg-primary hover:text-primary-foreground hover:border-primary transition"
+                >
+                  Enquire <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------ Portfolio ------------------------------ */
+
+const projects = [
+  {
+    location: "Wagholi · Commercial",
+    title: "Emergency Deep Freezer Revival",
+    summary:
+      "A retail grocer's 1,200L commercial deep freezer failed at 11:42 PM. Our on-call engineer arrived within 38 minutes, diagnosed a failed start capacitor and refrigerant leak, sealed the line, recharged R-404A and restored sub-zero hold before opening hours.",
+    metrics: [
+      { value: "38 min", label: "On-site response" },
+      { value: "₹1.8L", label: "Stock loss prevented" },
+      { value: "0", label: "Hours of trading lost" },
+    ],
+  },
+  {
+    location: "Karegaon MIDC · Industrial",
+    title: "Cooling Tower Complete Overhaul",
+    summary:
+      "Replaced degraded PVC fills, drift eliminators and corroded distribution nozzles on a 350 TR induced-draft cooling tower. Realigned the gearbox, balanced the fan blades and calibrated the make-up water valves — restoring designed approach temperature.",
+    metrics: [
+      { value: "+22%", label: "Thermal efficiency" },
+      { value: "−18%", label: "Power draw" },
+      { value: "3 days", label: "Total turnaround" },
+    ],
+  },
+  {
+    location: "Shikrapur · Corporate",
+    title: "14-Unit AC Rollout + AMC",
+    summary:
+      "Designed and installed 14 inverter split ACs across two corporate floors with custom copper runs and concealed drain lines. Onboarded the client to our Commercial Routine AMC with quarterly servicing and a logged diagnostics dashboard.",
+    metrics: [
+      { value: "14", label: "Units commissioned" },
+      { value: "4 yr", label: "AMC contracted" },
+      { value: "100%", label: "Genuine OEM parts" },
+    ],
+  },
+];
+
+function Portfolio() {
+  return (
+    <section id="portfolio" className="py-24 relative">
+      <div className="mx-auto max-w-7xl px-6">
+        <SectionHeader
+          tag="Project Portfolio"
+          title="Field-tested. Metrics, not marketing."
+          subtitle="Selected case studies from along the Wagholi–Shirur corridor and MIDC manufacturing hubs."
+        />
+        <div className="mt-12 grid lg:grid-cols-3 gap-6">
+          {projects.map((p) => (
+            <article
+              key={p.title}
+              className="surface-card rounded-2xl p-7 flex flex-col hover:border-primary/40 transition"
+            >
+              <div className="text-[11px] uppercase tracking-[0.2em] text-primary font-semibold">
+                {p.location}
+              </div>
+              <h3 className="font-display text-xl font-semibold mt-2">{p.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed mt-3 flex-1">
+                {p.summary}
+              </p>
+              <div className="mt-6 grid grid-cols-3 gap-3 pt-5 border-t border-border">
+                {p.metrics.map((m) => (
+                  <div key={m.label}>
+                    <div className="font-display text-lg font-bold text-gradient">
+                      {m.value}
+                    </div>
+                    <div className="text-[10px] uppercase tracking-wider text-muted-foreground mt-0.5">
+                      {m.label}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------ Testimonials ------------------------------ */
+
+const testimonials = [
+  {
+    quote:
+      "Our chiller failed mid-shift at the Ranjangaon plant. Prime Cool had an engineer on site in under three hours with a replacement capacitor already in the van. That kind of preparedness is rare.",
+    name: "Mahesh Patil",
+    role: "Plant Manager, Auto-Component Manufacturing · Ranjangaon MIDC",
+  },
+  {
+    quote:
+      "Saurav's team installed three split ACs and ran a full diagnostic on our old window unit. Clean copper work, no shortcuts, and they showed me exactly what they were doing.",
+    name: "Aarti Deshpande",
+    role: "Homeowner · Wagholi",
+  },
+  {
+    quote:
+      "The cooling tower overhaul came in on budget and a day ahead of schedule. Approach temperature is back in spec and we've already seen the power bill drop. Highly engineered work.",
+    name: "Sandeep Kulkarni",
+    role: "Maintenance Head, Karegaon MIDC",
+  },
+  {
+    quote:
+      "We signed the Commercial Routine AMC for our clinic. Quarterly visits are logged, technicians are on time, and the chiller hasn't tripped since they rebalanced the refrigerant.",
+    name: "Dr. Neha Joshi",
+    role: "Director, Diagnostic Clinic · Shikrapur",
+  },
+];
+
+const trustSignals = [
+  { icon: ShieldCheck, label: "100% Genuine OEM Parts" },
+  { icon: Gauge, label: "Verified Diagnostics Reports" },
+  { icon: Zap, label: "Certified Electrical Safety" },
+  { icon: Clock, label: "Logged Service Timelines" },
+];
+
+function Testimonials() {
+  return (
+    <section className="py-24 border-t border-border bg-card/20">
+      <div className="mx-auto max-w-7xl px-6">
+        <SectionHeader
+          tag="Trust & Reviews"
+          title="What homeowners and plant managers say."
+          subtitle="Verified feedback from clients across our domestic and industrial routes."
+        />
+
+        <div className="mt-12 grid md:grid-cols-2 gap-6">
+          {testimonials.map((t) => (
+            <figure key={t.name} className="surface-card rounded-2xl p-7">
+              <blockquote className="text-foreground leading-relaxed">
+                <span className="text-primary text-3xl font-display leading-none mr-1">“</span>
+                {t.quote}
+              </blockquote>
+              <figcaption className="mt-5 pt-5 border-t border-border">
+                <div className="font-semibold">{t.name}</div>
+                <div className="text-xs text-muted-foreground mt-0.5">{t.role}</div>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+
+        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-3">
+          {trustSignals.map((s) => (
+            <div
+              key={s.label}
+              className="surface-card rounded-xl p-4 flex items-center gap-3"
+            >
+              <s.icon className="h-5 w-5 text-primary shrink-0" />
+              <span className="text-sm font-medium">{s.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------ About ------------------------------ */
+
+function About() {
+  return (
+    <section id="about" className="py-24">
+      <div className="mx-auto max-w-7xl px-6 grid lg:grid-cols-5 gap-12 items-center">
+        <div className="lg:col-span-3">
+          <SectionHeader
+            tag="About Prime Cool"
+            title="Founded on mechanical precision. Run by engineers who answer the phone."
+            subtitle="Prime Cool was built to close the gap between fly-by-night appliance repair and slow corporate service contracts."
+          />
+          <div className="mt-6 space-y-4 text-muted-foreground leading-relaxed">
+            <p>
+              Led by proprietor <span className="text-foreground font-semibold">Saurav Kailas Temgire</span>,
+              the team operates a dedicated rapid-response route through Wagholi, Lonikand, Shikrapur and Shirur,
+              with embedded engineers serving the Karegaon and Ranjangaon manufacturing zones.
+            </p>
+            <p>
+              From a single split AC in a Wagholi flat to a 350 TR cooling tower inside an MIDC plant,
+              every job is approached the same way — verified diagnostics, genuine parts, logged outcomes.
+              No improvisation. No shortcuts.
+            </p>
+          </div>
+        </div>
+
+        <div className="lg:col-span-2 surface-card rounded-3xl p-8">
+          <div className="flex items-center gap-4">
+            <span className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary text-primary-foreground font-display font-bold text-lg">
+              SKT
+            </span>
+            <div>
+              <div className="font-display text-lg font-bold">Saurav Kailas Temgire</div>
+              <div className="text-xs text-muted-foreground">Proprietor & Lead Engineer</div>
+            </div>
+          </div>
+          <div className="mt-6 space-y-3 text-sm">
+            {[
+              "Hands-on experience across HVAC, refrigeration & heavy mechanical systems",
+              "Direct accountability — calls answered by the proprietor, not a call centre",
+              "Field team trained on OEM service protocols",
+            ].map((p) => (
+              <div key={p} className="flex gap-3 text-muted-foreground">
+                <ShieldCheck className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                <span>{p}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------ FAQ ------------------------------ */
+
+const faqs = [
+  {
+    q: "How fast can you respond to an emergency call?",
+    a: "Within the Wagholi–Shirur corridor we target an on-site response of under 60 minutes for residential calls and under 4 hours for industrial SLAs under our Zero-Downtime AMC. Off-route locations are quoted per site.",
+  },
+  {
+    q: "What does an Annual Maintenance Contract actually cover?",
+    a: "Scheduled preventative visits, jet/dry chemical cleaning, gas pressure verification, electrical safety checks, and a logged diagnostics report after every visit. Industrial tiers add valve and pressure-gauge calibration plus pre-staged spares.",
+  },
+  {
+    q: "What is your service radius?",
+    a: "We operate a dedicated route from Wagholi through Lonikand, Kesnand, Koregaon Bhima, Shikrapur and Shirur, with embedded support at Karegaon and Ranjangaon MIDC. Other parts of Pune are served on request.",
+  },
+  {
+    q: "Do you provide a warranty on spare parts?",
+    a: "Yes. Every genuine OEM spare we install carries the manufacturer warranty (typically 6–24 months depending on the component), backed by our own workmanship guarantee on the labour.",
+  },
+  {
+    q: "Do you handle both domestic appliances and industrial machinery?",
+    a: "Yes. The same team services home ACs, refrigerators and washing machines as well as commercial chillers, cooling towers, industrial valves and capacitor banks — the difference is the scale of equipment and the spares we carry on the visit.",
+  },
+];
+
+function Faq() {
+  return (
+    <section className="py-24 border-t border-border">
+      <div className="mx-auto max-w-4xl px-6">
+        <SectionHeader
+          tag="FAQ"
+          title="Frequently asked questions."
+          subtitle="Straight answers about response times, AMCs, coverage and warranties."
+        />
+        <div className="mt-10 space-y-3">
+          {faqs.map((f) => (
+            <details
+              key={f.q}
+              className="surface-card rounded-xl p-5 group"
+            >
+              <summary className="flex items-center justify-between cursor-pointer list-none font-display font-semibold">
+                <span>{f.q}</span>
+                <span className="ml-4 inline-flex h-7 w-7 items-center justify-center rounded-full border border-border text-primary group-open:rotate-45 transition">
+                  +
+                </span>
+              </summary>
+              <p className="mt-4 text-sm text-muted-foreground leading-relaxed">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
