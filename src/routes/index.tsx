@@ -109,7 +109,12 @@ function Index() {
         <Stats />
         <Services />
         <Industrial />
+        <Catalog />
+        <Portfolio />
+        <Testimonials />
+        <About />
         <Coverage />
+        <Faq />
         <Contact />
       </main>
       <Footer />
@@ -127,10 +132,11 @@ function Header() {
             Prime <span className="text-gradient">Cool</span>
           </span>
         </a>
-        <nav className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
+        <nav className="hidden md:flex items-center gap-6 text-sm text-muted-foreground">
           <a href="#services" className="hover:text-foreground transition">Services</a>
-          <a href="#industrial" className="hover:text-foreground transition">Industrial</a>
-          <a href="#coverage" className="hover:text-foreground transition">Coverage</a>
+          <a href="#catalog" className="hover:text-foreground transition">Catalog</a>
+          <a href="#portfolio" className="hover:text-foreground transition">Projects</a>
+          <a href="#about" className="hover:text-foreground transition">About</a>
           <a href="#contact" className="hover:text-foreground transition">Contact</a>
         </nav>
         <a
